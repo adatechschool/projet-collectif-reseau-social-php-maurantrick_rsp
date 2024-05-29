@@ -46,7 +46,7 @@ include "menu.php"
              * Attention à en pas oublier de modifier tag_id=321 avec l'id du mot dans le lien
              */
             while ($tag = $lesInformations->fetch_assoc()) {
-                echo "<pre>" . print_r($tag, 1) . "</pre>";
+                // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <article>
                     <h3><?php echo $tag['id'] ?></h3>
@@ -77,7 +77,7 @@ include "menu.php"
              * Attention à en pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
              */
             while ($tag = $lesInformations->fetch_assoc()) {
-                echo "<pre>" . print_r($tag, 1) . "</pre>";
+                // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <article>
                     <h3><?php echo $tag['alias'] ?></h3>
