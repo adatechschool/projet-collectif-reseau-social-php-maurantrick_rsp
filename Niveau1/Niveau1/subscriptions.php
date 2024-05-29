@@ -43,7 +43,12 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3>Alexandra</h3>
+                    <!-- while et echo à use   -->
+                    <!-- $i = 1;
+                    while ($i < 6) {
+                        echo $i;
+                        $i++;
+                    } -->   <h3><?php echo $post['alias'] ?></3>
                     <p>id:654</p>                    
                 </article>
             </main>
