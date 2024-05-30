@@ -36,7 +36,7 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($user, 1) . "</pre>";
+                //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -54,7 +54,7 @@
                  */
                 
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -74,8 +74,6 @@
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
-
-                 
                 while ($post = $lesInformations->fetch_assoc())
                 {
 
@@ -85,7 +83,11 @@
                         <h3>
                             <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
                         </h3>
-                        <address><?php echo $post['author_name'] ?></address>
+                        <address>
+                            <a href="wall.php?user_id=<?php echo $post['author_id'];?>">
+                                <?php echo $post['author_name'] ?>
+                            </a>
+                        </address>
                         <div>
                             
                          <p><?php echo $post['content'] ?></p>
