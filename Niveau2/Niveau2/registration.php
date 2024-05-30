@@ -33,9 +33,9 @@
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
-                        $new_email = $_POST['???'];
-                        $new_alias = $_POST['???'];
-                        $new_passwd = $_POST['???'];
+                        $new_email = $_POST['email'];
+                        $new_alias = $_POST['pseudo'];
+                        $new_passwd = $_POST['motpasse'];
 
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
@@ -68,7 +68,8 @@
                     }
                     ?>                     
                     <form action="registration.php" method="post">
-                        <input type='hidden'name='???' value='achanger'>
+                        <input type='hidden'name='???' value='achanger'> 
+                        <!-- TODO: Demander ce que je dois faire ?! -->
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
                             <dd><input type='text'name='pseudo'></dd>
