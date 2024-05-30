@@ -23,9 +23,9 @@
             $userId = intval($_GET['user_id']);
             ?>
            
-            /**
+            
              <!-- * Etape 2: se connecter à la base de donnée -->
-             */
+             
             <?php
        include "donnees.php"
        ?>
@@ -59,6 +59,7 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    users.id as id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -84,21 +85,32 @@
                  */
                 while ($post = $lesInformations->fetch_assoc())
                 {
+                    
                 ?>         
                 
                 <article>
                     <h3>
                         <time datetime='2020-02-01 11:12:13'><?php echo $post['created']?></time>
                     </h3>
-                    <address><?php echo $post['author_name'] ?></address>
-                    <div>
-                        
+                    
+                    <a href="wall.php?user_id=<?php echo $post['id'];?>"><address><?php echo htmlspecialchars($post['author_name']) ?></address></a>
+                    <div>     
+                           
+                    <!-- // echo "<pre>" . print_r($post['id'], 1) . "</pre>";
+                    // echo "<pre>" . print_r($post, 1) . "</pre>" -->
+                    
                         <p><?php echo $post['content'] ?></p>
                     </div>                                            
                     <footer>
                         <small>♥ <?php echo $post['like_number'] ?></small>
-                        <a href="">#<?php echo $post['taglist'] ?></a>,
-                        <a href="">#<?php echo $post['author_name'] ?></a>,
+                        <?php
+                                $exploded = explode(',', $post['taglist']);
+                                foreach($exploded as $tag) {
+                                    echo '<a href="">#'.$tag.'</a>, ';
+                                }
+                            ?>
+                            
+                        
                     </footer>
                 </article>
                 <?php

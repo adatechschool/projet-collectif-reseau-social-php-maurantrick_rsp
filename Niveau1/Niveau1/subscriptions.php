@@ -45,8 +45,8 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                 <h3><?php echo $post['alias'] ?></3>
-                    <p><?php echo $post['id']?></p>                    
+                 <h3><a href="wall.php?user_id=<?php echo $post['id'];?>"><?php echo $post['alias'] ?></a></h3>
+                 <a href="wall.php?user_id=<?php echo $post['id'];?>"><p><?php echo $post['id']?></p></a>                    
                 </article>
                 <?php } ?>
             </main>

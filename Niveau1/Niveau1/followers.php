@@ -43,8 +43,8 @@
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo $post['alias']?></h3>
-                    <p><?php echo $post['id']?></p>
+                    <a href="wall.php?user_id=<?php echo $post['id'];?>"><h3><?php echo $post['alias']?></h3></a>
+                    <a href="wall.php?user_id=<?php echo $post['id'];?>"><p><?php echo $post['id']?></p></a>
                 </article>
                 <?php } ?>  
             </main>
