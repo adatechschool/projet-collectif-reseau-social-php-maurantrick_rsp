@@ -25,13 +25,17 @@ session_start();
                 <article>
                     <h2>Poster un message</h2>
                     <?php
+
+                    include "donnees.php";
+                
                     /**
                      * BD
-                     */
-                    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork_tests");
-                    /**
+                     *
+                     *$mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+                     *
                      * Récupération de la liste des auteurs
                      */
+                
                     $listAuteurs = [];
                     $laQuestionEnSql = "SELECT * FROM users";
                     $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -54,8 +58,8 @@ session_start();
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
-                        $authorId = $_POST['???'];
-                        $postContent = $_POST['???'];
+                        $authorId = $_POST['auteur'];
+                        $postContent = $_POST['message'];
 
 
                         //Etape 3 : Petite sécurité
@@ -64,12 +68,11 @@ session_start();
                         $postContent = $mysqli->real_escape_string($postContent);
                         //Etape 4 : construction de la requete
                         $lInstructionSql = "INSERT INTO posts "
-                                . "(id, user_id, content, created, permalink, post_id) "
+                                . "(id, user_id, content, created, parent_id) "
                                 . "VALUES (NULL, "
                                 . $authorId . ", "
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
-                                . "'', "
                                 . "NULL);"
                                 ;
                         echo $lInstructionSql;
