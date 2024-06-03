@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -37,6 +40,7 @@
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 //echo "<pre>" . print_r($user, 1) . "</pre>";
+                
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -44,6 +48,9 @@
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : 
                         n° <?php echo $user["id"] ?>.
                         <?php echo $user["alias"] ?>
+                        <dt><label for='nouveau message'>Nouveau message :</label></dt>
+                        <dd><input type='nouveau message'name='newmsg'></dd>
+                        <input type="submit">
                     </p>
                 </section>
             </aside>
@@ -54,7 +61,7 @@
                  */
                 
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id,
+                    SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
