@@ -32,7 +32,9 @@ session_start();
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            include "donnees.php"           ?>
+            include "donnees.php"
+            ?>
+
             <?php
             /**
              * Etape 3: récupérer le nom de l'utilisateur
@@ -50,6 +52,7 @@ session_start();
                 <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
                     n° <?php echo $user["id"] ?>.
                     <?php echo $user["alias"] ?>
+
                     <?php
                     if ($_SESSION['connected_id'] == $user['id']) {
                         echo "<p> C'est mon mur, je peux publier. </p>";
@@ -57,19 +60,60 @@ session_start();
                         echo "<p> Ce n'est pas mon mur.</p>";
                     }
                     ?>
-                    <!-- <dt><label for='nouveau message'>Nouveau message :</label></dt>
-                        <dd><input type='nouveau message'name='newmsg'></dd>
-                        <input type="submit"> -->
                 </p>
 
-                <!-- <?php
-                        if ($connectedUserId == $wallUserId) {
-                            echo '<form action="user.php" method="post">
-                    <textarea name="message" placeholder="Écrivez un message..."></textarea>
-                    <button type="submit">Publier</button>
-                    </form>';
+
+                <!-- TEST ÉTAPE 5 -->
+                <?php
+                function debug_to_console($data)
+                {
+                    $output = $data;
+                    if (is_array($output))
+                        $output = implode(',', $output);
+
+                    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+                }
+
+                if (isset($_POST['followForm'])) {
+                    $verificationSQL = "SELECT * FROM followers WHERE followed_user_id = '" . $_SESSION['connected_id'] . "'AND following_user_id = '" . $userId . "'";
+                    $isFollowing = $mysqli->query($verificationSQL);
+                    if ($isFollowing->num_rows == 0) {
+                        $instructionSQL = "INSERT INTO followers "
+                            . "(id, followed_user_id, following_user_id) "
+                            . "VALUES (NULL, "
+                            . $_SESSION['connected_id'] . ", "
+                            . "'" . $userId . "');";
+
+                        $ok = $mysqli->query($instructionSQL);
+                        if (!$ok) {
+                            echo "Impossible de follow cet utilisateur: " . $mysqli->error;
+                        } else {
+                            echo "vous suivez cet utilisateur:" . $user['alias'];
+                            // header('Refresh:0; url=wall.php?user_id=' . $userId);
                         }
-                        ?> -->
+                    } else {
+                        echo "vous suivez déjà cette personne";
+                    }
+                }
+                ?>
+
+                <div <?php
+                        if ($_SESSION['connected_id'] == $user['id']) {
+                            echo " style='display: none'";
+                        }
+                        ?>>
+                    <article>
+                        <form action="" method="post">
+                            <input type='hidden' name="followForm">
+                            <input type='submit' value="Follow"></input>
+                        </form>
+                    </article>
+                </div>
+
+
+                <!-- FIN DU TEST -->
+
+
 
             </section>
         </aside>
@@ -98,9 +142,11 @@ session_start();
             }
             ?>
 
-            <div <?php if ($_SESSION['connected_id'] !== $user['id']) {
+            <div <?php
+                    if ($_SESSION['connected_id'] !== $user['id']) {
                         echo " style='display: none'";
-                    } ?>>
+                    }
+                    ?>>
                 <article>
                     <h3>Publier un nouveau message:</h3>
                     <form action="wall.php" method="post">
@@ -113,6 +159,7 @@ session_start();
                     </form>
                 </article>
             </div>
+
             <?php
             /**
              * Etape 3: récupérer tous les messages de l'utilisatrice
