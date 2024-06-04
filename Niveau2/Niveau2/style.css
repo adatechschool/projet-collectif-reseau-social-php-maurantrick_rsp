@@ -1,5 +1,6 @@
 body{
-    background-color: #003;
+    /* background-color: rgb(96, 233, 164); */
+    background: linear-gradient(#e66465, #9198e5);
     font-family: Arial;
 }
 
@@ -7,7 +8,7 @@ a{text-decoration: none; color:black;}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-color: #fff;
+    background: linear-gradient(#e66465, #dd89fb);
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
@@ -16,6 +17,7 @@ body>header{
 }
 body>header img{
     height:5em;
+    background: linear-gradient(#e66465, #dd89fb);
 }
 body>header #menu {
     display:flex;
@@ -45,6 +47,7 @@ body>header #user>a{
     text-align: center;
     padding:2em 0;
     width:100%;
+    background: linear-gradient(#e66465, #dd89fb);
 }
 body>header #user ul{ 
     display: none;
@@ -66,7 +69,24 @@ body>header #user ul li a{
 body>header #user:hover ul{
     display:block;
 }
+.btn-submit {
+    background-color:  #5dade2 ; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+}
 
+.btn-submit:hover {
+    background-color:  #ec7063 ; 
+     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 #wrapper{
     display:flex;    
@@ -74,7 +94,9 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-color: #fff;
+    border: 4mm ridge rgba(50, 192, 220, 0.6);
+    background: linear-gradient(#e664e4, #9198e5);
+    /* background-color: #4aa6aa; */
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -124,11 +146,16 @@ body>header #user:hover ul{
 
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
-#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;
+    background: linear-gradient(#e66465, #dd89fb);
+}
 #wrapper.admin h2{text-align: center;}
+
 #wrapper.admin h3{margin:0;}
 #wrapper.admin nav{text-align: right;}
-#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;
+    /* background: linear-gradient( #e74c3c, #dd89fb); */
+background-color:#ec7063}
 #wrapper.admin article p{float:left;margin:0;}
 
 
@@ -145,6 +172,7 @@ body>header #user:hover ul{
     width:25em;
     height:7em;
     margin-right: 1em;
+    
 }
 .contacts article img{
     float:right;

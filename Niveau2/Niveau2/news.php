@@ -127,7 +127,7 @@ session_start();
                           echo "<p>" . htmlspecialchars($cleaned_content) . "</p>";?>
                         </div>
                         <footer>
-                            <small>♥<?php echo $post['like_number'] ?></small>
+                            <small>💖<?php echo $post['like_number'] ?></small>
                             
                             <?php
                                 $exploded = explode(',', $post['taglist']);
