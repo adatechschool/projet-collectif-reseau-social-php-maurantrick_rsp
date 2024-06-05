@@ -80,11 +80,7 @@ include "menu.php"
                 // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <article>
-<<<<<<< Updated upstream
-                    <h3><a href="wall.php?user_id=<?php echo $tag['id'] ?><"><?php echo $tag['alias'] ?></a></h3>
-=======
                     <h3><a href="wall.php?user_id=<?php echo $tag['id'] ?>"><?php echo $tag['alias'] ?></a></h3>
->>>>>>> Stashed changes
                     <p><?php echo $tag['id'] ?></p>
                     <nav>
                         <a href="wall.php?user_id=<?php echo $tag['id'] ?>">Mur</a>
